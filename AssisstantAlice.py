@@ -66,13 +66,14 @@ def main():
                 st.markdown(message["content"])
 
                 # Accept user input
-        if prompt := st.chat_input("Hello how can I help?"):
+        if prompt := st.chat_input("Hello how can I help today?"):
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
             # Display user message in chat message container
             with st.chat_message("user"):
                 st.markdown(prompt)
-
+                engine.say("Hello how can I help today?")
+                engine.runAndWait()
             # Create a thread
             st.session_state.thread = st.session_state.client.beta.threads.create()
 
