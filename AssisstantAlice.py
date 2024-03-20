@@ -1,4 +1,5 @@
-﻿from openai import OpenAI
+﻿from wsgiref import headers
+from openai import OpenAI
 import time
 import streamlit as st
 from PIL import Image
@@ -6,6 +7,14 @@ import pyttsx3
 import threading
 import pydub
 from pydub.playback import play
+
+headers = {
+    
+    
+    }
+
+   
+
 
 def main():
 
@@ -23,6 +32,9 @@ def main():
         layout="wide"
     )
     
+    api_key = st.secrets["OPEN_API_KEY"]
+    assistant_id = st.secrets["ASSISTANT_ID"]
+   
     #image_path = r'C:\Users\jacqu\assistant-api-streamlit-chatbot\2.jpg'
     #st.image(image_path, caption='')
     
@@ -44,9 +56,7 @@ def main():
     st.sidebar.image(image_path, caption='')
     
 
-    api_key = "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"
-    assistant_id = "asst_mHv0pDlN8le4m7xtKPi7QMzI"
-
+   
     # Initiate st.session_state
     st.session_state.client = OpenAI(api_key=api_key)
 
@@ -66,13 +76,13 @@ def main():
                 st.markdown(message["content"])
 
                 # Accept user input
-        if prompt := st.chat_input("Hello how can I help?"):
+        if prompt := st.chat_input("Hello how can I help today?"):
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
             # Display user message in chat message container
             with st.chat_message("user"):
                 st.markdown(prompt)
-
+                
             # Create a thread
             st.session_state.thread = st.session_state.client.beta.threads.create()
 
