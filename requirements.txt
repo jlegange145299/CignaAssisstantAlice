@@ -1,4 +1,5 @@
 streamlit
 openai
 pyttsx3
+pydub
 Pillow

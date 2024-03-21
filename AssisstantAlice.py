@@ -8,13 +8,6 @@ import threading
 import pydub
 from pydub.playback import play
 
-headers = {
-    
-    
-    }
-
-   
-
 
 def main():
 
@@ -82,7 +75,7 @@ def main():
             # Display user message in chat message container
             with st.chat_message("user"):
                 st.markdown(prompt)
-                
+
             # Create a thread
             st.session_state.thread = st.session_state.client.beta.threads.create()
 
