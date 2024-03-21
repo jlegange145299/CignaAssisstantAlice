@@ -8,13 +8,6 @@ import threading
 import pydub
 from pydub.playback import play
 
-headers = {
-    
-    
-    }
-
-   
-
 
 def main():
 
@@ -32,12 +25,10 @@ def main():
         layout="wide"
     )
     
-    api_key = st.secrets["OPEN_API_KEY"]
+    api_key = st.secrets["OPENAI_API_KEY"]
     assistant_id = st.secrets["ASSISTANT_ID"]
    
-    #image_path = r'C:\Users\jacqu\assistant-api-streamlit-chatbot\2.jpg'
-    #st.image(image_path, caption='')
-    
+      
     video_path = r'C:\Users\jacqu\assistant-api-streamlit-chatbot\video.mp4'
     st.video(video_path,start_time=0)
     
@@ -82,7 +73,7 @@ def main():
             # Display user message in chat message container
             with st.chat_message("user"):
                 st.markdown(prompt)
-                
+
             # Create a thread
             st.session_state.thread = st.session_state.client.beta.threads.create()
 
